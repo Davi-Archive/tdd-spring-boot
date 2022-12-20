@@ -72,4 +72,15 @@ public class EventDTO implements Serializable {
 	public void setCityId(Long cityId) {
 		this.cityId = cityId;
 	}
+
+	@Override
+	public String toString() {
+		return "EventDTO{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", date=" + date +
+				", url='" + url + '\'' +
+				", cityId=" + cityId +
+				'}';
+	}
 }

@@ -16,19 +16,23 @@ public class CityService {
     @Autowired
     private CityRepository repository;
 
-    private List<CityDTO> findAll() {
+    public List<CityDTO> findAll() {
         List<City> list = repository.findAll(Sort.by("name"));
         return list.stream().map(x -> new CityDTO(x)).collect(Collectors.toList());
     }
 
-    private CityDTO insert(CityDTO dto) {
+    public CityDTO insert(CityDTO dto) {
         City entity = new City();
         entity.setName(dto.getName());
         repository.save(entity);
         return new CityDTO(entity);
     }
 
-    private void deleteOne(Long id) {
-        repository.deleteById(id);
+    public void deleteOne(Long id) {
+        try {
+            repository.deleteById(id);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 }
