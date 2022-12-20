@@ -3,7 +3,11 @@ package io.davi.tdd2.services;
 import io.davi.tdd2.dto.CityDTO;
 import io.davi.tdd2.entities.City;
 import io.davi.tdd2.repositories.CityRepository;
+import io.davi.tdd2.services.exceptions.DatabaseException;
+import io.davi.tdd2.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +35,10 @@ public class CityService {
     public void deleteOne(Long id) {
         try {
             repository.deleteById(id);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException("Id not Found " + id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Bad request on id: " + id);
         }
     }
 }
