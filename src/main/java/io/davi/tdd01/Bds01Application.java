@@ -1,4 +1,4 @@
-package com.devsuperior.bds01;
+package io.davi.tdd01;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

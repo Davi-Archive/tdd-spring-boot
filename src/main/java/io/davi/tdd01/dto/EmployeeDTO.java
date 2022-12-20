@@ -1,8 +1,8 @@
-package com.devsuperior.bds01.dto;
+package io.davi.tdd01.dto;
 
 import java.io.Serializable;
 
-import com.devsuperior.bds01.entities.Employee;
+import io.davi.tdd01.entities.Employee;
 
 public class EmployeeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package com.devsuperior.bds01.controllers;
+package io.davi.tdd01.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
