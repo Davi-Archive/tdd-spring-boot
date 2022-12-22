@@ -5,18 +5,18 @@ import java.time.LocalDate;
 
 import io.davi.tdd2.entities.Event;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 
 public class EventDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
 
     private Long id;
 
-    @NotBlank(message = "Digite o nome do evento")
+    @NotBlank(message = "Campo requerido")
     private String name;
+   @FutureOrPresent(message = "A data do evento não pode ser passada")
     private LocalDate date;
     private String url;
-    @NotBlank(message = "Digite o id da Cidade")
+    @NotNull(message = "Campo requerido")
     private Long cityId;
 
     public EventDTO() {

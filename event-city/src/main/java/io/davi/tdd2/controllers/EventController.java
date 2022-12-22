@@ -27,7 +27,7 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<EventDTO> insertOne(@RequestBody EventDTO dto) {
+    public ResponseEntity<EventDTO> insertOne(@Valid @RequestBody EventDTO dto) {
         EventDTO response = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
@@ -35,7 +35,7 @@ public class EventController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<EventDTO> updateOne(@PathVariable Long id, @RequestBody EventDTO dto) {
+    public ResponseEntity<EventDTO> updateOne(@PathVariable Long id,@Valid @RequestBody EventDTO dto) {
         EventDTO event = service.update(id, dto);
         return ResponseEntity.ok().body(event);
     }

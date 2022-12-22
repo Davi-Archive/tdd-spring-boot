@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_event")
@@ -17,10 +19,13 @@ public class Event {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@NotBlank(message = "Campo requerido")
 	private String name;
 	private LocalDate date;
 	private String url;
-	
+
+	@NotNull(message = "Campo requerido")
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
