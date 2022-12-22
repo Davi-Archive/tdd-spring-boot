@@ -4,6 +4,8 @@ import io.davi.tdd2.dto.EventDTO;
 import io.davi.tdd2.entities.Event;
 import io.davi.tdd2.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +17,9 @@ public class EventController {
     private EventService service;
 
     @GetMapping
-    public ResponseEntity<String> hello(){
-        return ResponseEntity.ok().body("Hello World");
+    public ResponseEntity<Page<EventDTO>> findAllPaged(Pageable pageable){
+        Page<EventDTO> page = service.findAllPaged(pageable);
+        return ResponseEntity.ok().body(page);
     }
 
     @PutMapping(value = "/{id}")
