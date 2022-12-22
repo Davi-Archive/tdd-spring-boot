@@ -21,10 +21,21 @@ public class EventService {
     @Autowired
     private EventRepository repository;
 
+    @Transactional(readOnly = true)
     public Page<EventDTO> findAllPaged(Pageable pageable) {
         Page<Event> list = repository.findAll(pageable);
         return list.map(event -> new EventDTO(event));
     }
+
+
+    @Transactional
+    public EventDTO insert(EventDTO dto) {
+        Event entity = new Event();
+        copyDtoToEntity(dto, entity);
+        entity = repository.save(entity);
+        return new EventDTO(entity);
+    }
+
 
     @Transactional
     public EventDTO update(Long id, EventDTO dto) {
